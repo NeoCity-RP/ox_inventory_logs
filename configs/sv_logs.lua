@@ -10,6 +10,8 @@ colors = {
     green = 0x00FF00
 }
 
+unknown = "不明"
+
 hooks = {
     ['drop'] = {
         from = 'player',
@@ -23,12 +25,12 @@ hooks = {
                     title = '捨てる',
                     description = ("```\n[Player] %s\n - %s\n - ID: %s\n[Item]   %s x%s\n - META: %s\n[Coords] %s```")
                         :format(
-                            playerName,
-                            playerIdentifier,
-                            payload.source,
-                            payload.fromSlot.name,
-                            payload.fromSlot.count,
-                            json.encode(payload.fromSlot.metadata),
+                            playerName or unknown,
+                            playerIdentifier or unknown,
+                            payload.source or unknown,
+                            payload.fromSlot.name or unknown,
+                            payload.fromSlot.count or unknown,
+                            json.encode(payload.fromSlot.metadata or unknown),
                             ('%s, %s, %s'):format(playerCoords.x, playerCoords.y, playerCoords.z)
                         ),
                     color = colors.red
@@ -48,12 +50,12 @@ hooks = {
                     title = '拾う',
                     description = ("```\n[Player] %s\n - %s\n - ID: %s\n[Item]   %s x%s\n - META: %s\n[Coords] %s```")
                         :format(
-                            playerName,
-                            playerIdentifier,
-                            payload.source,
-                            payload.fromSlot.name,
-                            payload.fromSlot.count,
-                            json.encode(payload.fromSlot.metadata),
+                            playerName or unknown,
+                            playerIdentifier or unknown,
+                            payload.source or unknown,
+                            payload.fromSlot.name or unknown,
+                            payload.fromSlot.count or unknown,
+                            json.encode(payload.fromSlot.metadata or unknown),
                             ('%s, %s, %s'):format(playerCoords.x, playerCoords.y, playerCoords.z)
                         ),
                     color = colors.green
@@ -78,15 +80,15 @@ hooks = {
                     title = 'アイテム受け渡し',
                     description = ("```\n[Player] %s\n - %s\n - ID: %s\n[Item]   %s x%s\n - META: %s\n[Target] %s\n - %s\n - ID: %s\n[Coords] %s```")
                         :format(
-                            playerName,
-                            playerIdentifier,
-                            payload.source,
-                            payload.fromSlot.name,
-                            payload.fromSlot.count,
-                            targetName,
-                            targetIdentifier,
-                            targetSource,
-                            json.encode(payload.fromSlot.metadata),
+                            playerName or unknown,
+                            playerIdentifier or unknown,
+                            payload.source or unknown,
+                            payload.fromSlot.name or unknown,
+                            payload.fromSlot.count or unknown,
+                            targetName or unknown,
+                            targetIdentifier or unknown,
+                            targetSource or unknown,
+                            json.encode(payload.fromSlot.metadata or unknown),
                             ('%s, %s, %s'):format(playerCoords.x, playerCoords.y, playerCoords.z),
                             ('%s, %s, %s'):format(targetCoords.x, targetCoords.y, targetCoords.z)
                         ),
@@ -105,15 +107,15 @@ hooks = {
             sendWebhook('stash', {
                 {
                     title = 'スタッシュ(入れる)',
-                    description = ("```\n[Player] %s\n - %s\n - ID: %s\n[Item]   %s x%s\n - META: %s\n - ID: %s\n[Stash]  %s\n[Coords] %s```")
+                    description = ("```\n[Player] %s\n - %s\n - ID: %s\n[Item]   %s x%s\n - META: %s\n[Stash]  %s\n[Coords] %s```")
                         :format(
-                            playerName,
-                            playerIdentifier,
-                            payload.source,
-                            payload.fromSlot.name,
-                            payload.fromSlot.count,
-                            json.encode(payload.fromSlot.metadata),
-                            payload.toInventory,
+                            playerName or unknown,
+                            playerIdentifier or unknown,
+                            payload.source or unknown,
+                            payload.fromSlot.name or unknown,
+                            payload.fromSlot.coun or unknownt,
+                            json.encode(payload.fromSlot.metadata or unknown),
+                            payload.toInventory or unknown,
                             ('%s, %s, %s'):format(playerCoords.x, playerCoords.y, playerCoords.z)
                         ),
                     color = colors.green
@@ -131,15 +133,15 @@ hooks = {
             sendWebhook('stash', {
                 {
                     title = 'スタッシュ(取り出し)',
-                    description = ("```\n[Player] %s\n - %s\n - ID: %s\n[Item]   %s x%s\n - META: %s\n - ID: %s\n[Stash]  %s\n[Coords] %s```")
+                    description = ("```\n[Player] %s\n - %s\n - ID: %s\n[Item]   %s x%s\n - META: %s\n[Stash]  %s\n[Coords] %s```")
                         :format(
-                            playerName,
-                            playerIdentifier,
-                            payload.source,
-                            payload.fromSlot.name,
-                            payload.fromSlot.count,
-                            json.encode(payload.fromSlot.metadata),
-                            payload.fromInventory,
+                            playerName or unknown,
+                            playerIdentifier or unknown,
+                            payload.source or unknown,
+                            payload.fromSlot.name or unknown,
+                            payload.fromSlot.count or unknown,
+                            json.encode(payload.fromSlot.metadata or unknown),
+                            payload.fromInventory or unknown,
                             ('%s, %s, %s'):format(playerCoords.x, playerCoords.y, playerCoords.z)
                         ),
                     color = colors.red
@@ -148,4 +150,5 @@ hooks = {
         end
     },
 }
+
 
