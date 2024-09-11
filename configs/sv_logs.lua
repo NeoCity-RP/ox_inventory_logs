@@ -14,8 +14,8 @@ hooks = {
             local playerCoords = GetEntityCoords(GetPlayerPed(payload.source))
             sendWebhook('drop', {
                 {
-                    title = 'Drop',
-                    description = ('Hráč **%s** (%s, %s) **položil** item **%s** x%s (metadata: %s) na souřadnicích %s.')
+                    title = '捨てる',
+                    description = ('プレイヤー「`%s` (`%s`, `%s`)」はアイテム「`%s` `x%s` (メタデータ: `%s`)」を座標(`%s`) に配置しました。')
                         :format(
                             playerName,
                             playerIdentifier,
@@ -39,8 +39,8 @@ hooks = {
             local playerCoords = GetEntityCoords(GetPlayerPed(payload.source))
             sendWebhook('pickup', {
                 {
-                    title = 'Pickup',
-                    description = ('Hráč **%s** (%s, %s) **vzal** item **%s** x%s (metadata: %s) **ze země** na souřadnicích %s.')
+                    title = '拾う',
+                    description = ('プレイヤー「`%s` (`%s`, `%s`)」が座標(`%s`) でアイテム「`%s` `x%s` (メタデータ: `%s`)」を地面から取りました。')
                         :format(
                             playerName,
                             playerIdentifier,
@@ -69,8 +69,8 @@ hooks = {
             local targetCoords = GetEntityCoords(GetPlayerPed(targetSource))
             sendWebhook('give', {
                 {
-                    title = 'Předání itemů mezi hráči',
-                    description = ('Hráč **%s** (%s, %s) **dal** hráči **%s** (%s, %s) item **%s** x%s (metadata: %s) na souřadnicích %s a %s.')
+                    title = 'アイテム受け渡し',
+                    description = ('プレイヤー「`%s` (`%s`, `%s`)」は、座標(`%s`)で `%s` にアイテム「`%s` `x%s` (メタデータ: `%s`)」を渡しました。')
                         :format(
                             playerName,
                             playerIdentifier,
@@ -98,8 +98,8 @@ hooks = {
             local playerCoords = GetEntityCoords(GetPlayerPed(payload.source))
             sendWebhook('stash', {
                 {
-                    title = 'Sklad',
-                    description = ('Hráč **%s** (%s, %s) **dal** item **%s** x%s (metadata: %s) **do skladu %s** na souřadnicích %s.')
+                    title = 'スタッシュ(入れる)',
+                    description = ('プレイヤー「`%s` (`%s`, `%s`)」がアイテム「`%s` `x%s` (メタデータ: `%s`)」を座標(`%s`) にあるストレージ(`%s`) に入れました。')
                         :format(
                             playerName,
                             playerIdentifier,
@@ -124,8 +124,8 @@ hooks = {
             local playerCoords = GetEntityCoords(GetPlayerPed(payload.source))
             sendWebhook('stash', {
                 {
-                    title = 'Sklad',
-                    description = ('Hráč **%s** (%s, %s) **vzal** item **%s** x%s (metadata: %s) **ze skladu %s** na souřadnicích %s.')
+                    title = 'スタッシュ(取り出し)',
+                    description = ('プレイヤー「`%s` (`%s`, `%s`)」はアイテム「`%s` `x%s` (メタデータ: `%s`)」を座標(`%s`) のスタッシュ(`%s`) から取得しました。')
                         :format(
                             playerName,
                             playerIdentifier,
