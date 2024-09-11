@@ -4,6 +4,12 @@ webhooks = {
     ['give'] = '',
     ['stash'] = '',
 }
+
+colors = {
+    red = 0xFF0000,
+    green = 0x00FF00
+}
+
 hooks = {
     ['drop'] = {
         from = 'player',
@@ -15,7 +21,7 @@ hooks = {
             sendWebhook('drop', {
                 {
                     title = '捨てる',
-                    description = ('プレイヤー「`%s` (`%s`, `%s`)」はアイテム「`%s` `x%s` (メタデータ: `%s`)」を座標(`%s`) に配置しました。')
+                    description = ("```\n[Player] %s\n - %s\n - ID: %s\n[Item]   %s x%s\n - META: %s\n[Coords] %s```")
                         :format(
                             playerName,
                             playerIdentifier,
@@ -25,7 +31,7 @@ hooks = {
                             json.encode(payload.fromSlot.metadata),
                             ('%s, %s, %s'):format(playerCoords.x, playerCoords.y, playerCoords.z)
                         ),
-                    color = 0x00ff00
+                    color = colors.red
                 }
             })
         end
@@ -40,7 +46,7 @@ hooks = {
             sendWebhook('pickup', {
                 {
                     title = '拾う',
-                    description = ('プレイヤー「`%s` (`%s`, `%s`)」が座標(`%s`) でアイテム「`%s` `x%s` (メタデータ: `%s`)」を地面から取りました。')
+                    description = ("```\n[Player] %s\n - %s\n - ID: %s\n[Item]   %s x%s\n - META: %s\n[Coords] %s```")
                         :format(
                             playerName,
                             playerIdentifier,
@@ -50,7 +56,7 @@ hooks = {
                             json.encode(payload.fromSlot.metadata),
                             ('%s, %s, %s'):format(playerCoords.x, playerCoords.y, playerCoords.z)
                         ),
-                    color = 0x00ff00
+                    color = colors.green
                 }
             })
         end
@@ -70,21 +76,21 @@ hooks = {
             sendWebhook('give', {
                 {
                     title = 'アイテム受け渡し',
-                    description = ('プレイヤー「`%s` (`%s`, `%s`)」は、座標(`%s`)で `%s` にアイテム「`%s` `x%s` (メタデータ: `%s`)」を渡しました。')
+                    description = ("```\n[Player] %s\n - %s\n - ID: %s\n[Item]   %s x%s\n - META: %s\n[Target] %s\n - %s\n - ID: %s\n[Coords] %s```")
                         :format(
                             playerName,
                             playerIdentifier,
                             payload.source,
+                            payload.fromSlot.name,
+                            payload.fromSlot.count,
                             targetName,
                             targetIdentifier,
                             targetSource,
-                            payload.fromSlot.name,
-                            payload.fromSlot.count,
                             json.encode(payload.fromSlot.metadata),
                             ('%s, %s, %s'):format(playerCoords.x, playerCoords.y, playerCoords.z),
                             ('%s, %s, %s'):format(targetCoords.x, targetCoords.y, targetCoords.z)
                         ),
-                    color = 0x00ff00
+                    color = colors.red
                 }
             })
         end
@@ -99,7 +105,7 @@ hooks = {
             sendWebhook('stash', {
                 {
                     title = 'スタッシュ(入れる)',
-                    description = ('プレイヤー「`%s` (`%s`, `%s`)」がアイテム「`%s` `x%s` (メタデータ: `%s`)」を座標(`%s`) にあるストレージ(`%s`) に入れました。')
+                    description = ("```\n[Player] %s\n - %s\n - ID: %s\n[Item]   %s x%s\n - META: %s\n - ID: %s\n[Stash]  %s\n[Coords] %s```")
                         :format(
                             playerName,
                             playerIdentifier,
@@ -110,7 +116,7 @@ hooks = {
                             payload.toInventory,
                             ('%s, %s, %s'):format(playerCoords.x, playerCoords.y, playerCoords.z)
                         ),
-                    color = 0x00ff00
+                    color = colors.green
                 }
             })
         end
@@ -125,7 +131,7 @@ hooks = {
             sendWebhook('stash', {
                 {
                     title = 'スタッシュ(取り出し)',
-                    description = ('プレイヤー「`%s` (`%s`, `%s`)」はアイテム「`%s` `x%s` (メタデータ: `%s`)」を座標(`%s`) のスタッシュ(`%s`) から取得しました。')
+                    description = ("```\n[Player] %s\n - %s\n - ID: %s\n[Item]   %s x%s\n - META: %s\n - ID: %s\n[Stash]  %s\n[Coords] %s```")
                         :format(
                             playerName,
                             playerIdentifier,
@@ -136,9 +142,10 @@ hooks = {
                             payload.fromInventory,
                             ('%s, %s, %s'):format(playerCoords.x, playerCoords.y, playerCoords.z)
                         ),
-                    color = 0x00ff00
+                    color = colors.red
                 }
             })
         end
     },
 }
+
